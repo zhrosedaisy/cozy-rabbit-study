@@ -86,6 +86,10 @@ on macOS).
   `packaging/linux/README-LINUX.txt`.
   - Ubuntu / Debian: `sudo apt install openjdk-21-jre`
   - Fedora 44 and newer: `sudo dnf install java-25-openjdk`
+- **Windows package:** `./scripts/build-windows.sh` builds `cozy-rabbit-study-windows.zip` for 64-bit Windows 10 and
+  11 (Intel or AMD; JavaFX 21 has no ARM or 32-bit Windows build). It needs `zip` and `perl`. The recipient installs
+  Java 21 or newer (`winget install EclipseAdoptium.Temurin.21.JRE`) and double-clicks `install.bat` once; see
+  `packaging/windows/README-WINDOWS.txt`. This package is new and has only been built and checked on macOS so far.
 
 ## Study rooms: ports and troubleshooting
 
@@ -129,7 +133,8 @@ src/main/java/com/cozyrabbit
 ├── audio/                    SoundEngine (rain, casting, splashes, jingles are synthesized)
 ├── net/                      study rooms: RoomHost, RoomClient, wire format
 ├── ui/                       journal panel, bucket bubble, mini island, dialogs, reports
-└── tools/                    AppIcon: draws the app icon
-scripts/                      build-app.sh, build-linux.sh
+└── tools/                    AppIcon: draws the app icon; IcoWriter: makes the Windows .ico
+scripts/                      build-app.sh, build-linux.sh, build-windows.sh
 packaging/linux/              start/install scripts and instructions for the Linux package
+packaging/windows/            start/install scripts and instructions for the Windows package
 ```
