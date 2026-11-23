@@ -216,6 +216,10 @@ public final class RoomHost implements Room {
 
     @Override
     public String address() {
+        String forced = System.getProperty("cozyrabbit.advertiseAddress");
+        if (forced != null && !forced.isBlank()) {
+            return forced.trim();
+        }
         List<String> ips = Wire.localAddresses();
         String ip = ips.isEmpty() ? "not connected to a network" : ips.get(0);
         return server.getLocalPort() == TCP_PORT ? ip : ip + ":" + server.getLocalPort();

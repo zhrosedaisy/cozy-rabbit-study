@@ -187,6 +187,9 @@ public class CozyRabbitApp extends Application implements StudyTimer.Listener, J
             }
         });
         island.setVisible(settings.miniIsland());
+        if (Boolean.getBoolean("cozyrabbit.autostart")) {
+            toggleStart(); // developer helper for screenshots
+        }
 
         new AnimationTimer() {
             @Override

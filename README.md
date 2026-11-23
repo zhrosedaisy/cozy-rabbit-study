@@ -39,6 +39,32 @@ synthesized in code, so the project has no image or audio files to download.
 - A small always-on-top timer at the top of the screen. Click it for pause/resume, the current bucket's fish,
   stop and a button that brings the app back. Drag it anywhere; turn it off in Settings.
 
+## Screenshots
+
+Everything below uses demo data and made-up friends.
+
+### Studying together
+Friends in a study room sit on the pier with you, each with their own hat color, and a note pops up when one of
+them catches a fish. The journal ranks everybody by today's study time.
+
+![A study room with three friends on the pier](docs/study-room.png)
+
+### Every fish, and when it was caught
+Click a bucket to open a speech bubble with its fish and the time each one bit.
+
+![The speech bubble over a bucket](docs/bucket-bubble.png)
+
+### Weather and time of day
+The sky follows your clock, and you can pick sunny, rainy or snowy weather. The rabbit rests at night and has a
+coffee on breaks.
+
+![Six scenes: morning, midday, sunset, night, rain and snow](docs/weather-and-time.png)
+
+### Weekly report
+Hours per day by subject, the share and fish per subject, and a heatmap of when you study.
+
+![The weekly report](docs/weekly-report.png)
+
 ## Run it
 
 You need a JDK 21 or newer. JavaFX and SQLite are downloaded by Maven automatically.
@@ -77,6 +103,19 @@ on networks that allow broadcast messages.
 Everything is stored locally in `~/.cozyrabbit/cozyrabbit.db` (SQLite). There are no accounts and no analytics.
 Running sessions are saved every 15 seconds, sessions are split at midnight, and if the computer sleeps the timer
 pauses itself instead of counting the gap.
+
+## Developer helpers
+
+These JVM options exist for testing and for making the screenshots above (they are ignored in normal use):
+
+| Option | Effect |
+|---|---|
+| `-Dcozyrabbit.db=<file>` | Use another SQLite file instead of `~/.cozyrabbit/cozyrabbit.db` |
+| `-Dcozyrabbit.snapshot=<dir>` | Save screenshots of the main window and the reports, then quit |
+| `-Dcozyrabbit.snapshotDelay=<seconds>` | Wait this long before the first screenshot (default 4) |
+| `-Dcozyrabbit.autostart=true` | Start the timer right away |
+| `-Dcozyrabbit.autohost=true` | Open a study room right away |
+| `-Dcozyrabbit.advertiseAddress=<ip>` | Show this address as the room's address instead of the detected one |
 
 ## Project layout
 

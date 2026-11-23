@@ -24,7 +24,7 @@ final class DebugSnapshots {
     }
 
     static void run(String dir, Stage stage, Runnable openReports, Supplier<ReportsWindow> reports, Runnable openFish) {
-        PauseTransition first = new PauseTransition(Duration.seconds(4));
+        PauseTransition first = new PauseTransition(Duration.seconds(Double.parseDouble(System.getProperty("cozyrabbit.snapshotDelay", "4"))));
         first.setOnFinished(e -> {
             save(stage.getScene(), new File(dir, "app.png"));
             openReports.run();
@@ -38,7 +38,11 @@ final class DebugSnapshots {
                         tabs.getSelectionModel().select(1);
                         PauseTransition third = new PauseTransition(Duration.seconds(1.5));
                         third.setOnFinished(e3 -> {
-                            save(w.getScene(), new File(dir, "report-weekly.png"));
+                            // A window can't be taller than the screen, so snapshot the page content itself.
+                            javafx.scene.Node page = ((javafx.scene.control.ScrollPane) tabs.getTabs().get(1).getContent()).getContent();
+                            javafx.scene.SnapshotParameters params = new javafx.scene.SnapshotParameters();
+                            params.setFill(javafx.scene.paint.Color.web("#FBF3E4"));
+                            save(page.snapshot(params, null), new File(dir, "report-weekly.png"));
                             w.hide();
                             PauseTransition fourth = new PauseTransition(Duration.seconds(1.5));
                             fourth.setOnFinished(e4 -> {
@@ -60,7 +64,10 @@ final class DebugSnapshots {
     }
 
     static void save(Scene scene, File file) {
-        WritableImage img = scene.snapshot(null);
+        save(scene.snapshot(null), file);
+    }
+
+    static void save(WritableImage img, File file) {
         int w = (int) img.getWidth();
         int h = (int) img.getHeight();
         BufferedImage out = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
