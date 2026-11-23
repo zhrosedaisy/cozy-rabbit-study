@@ -1,0 +1,22 @@
+# Build output
+target/
+dist/
+out/
+
+# IDE and OS files
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local study data and logs (never commit personal data)
+*.db
+*.db-wal
+*.db-shm
+*.log
+hs_err_pid*
+
+# Local tooling
+.claude/
