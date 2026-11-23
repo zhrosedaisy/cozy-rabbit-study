@@ -7,7 +7,7 @@ you can see how much you studied, and on what, in a playful way.
 ![Cozy Rabbit Study](docs/screenshot.png)
 
 Built with Java 21 and JavaFX. All the artwork (pier, lake, rabbit, weather) is drawn in code and all sounds are
-synthesized in code, so the project has no image or audio files to download.
+synthesized in code, so the app needs no image or audio assets (the only image file it ships is the app icon).
 
 ## Features
 
